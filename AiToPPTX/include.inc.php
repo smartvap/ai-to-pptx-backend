@@ -530,7 +530,7 @@ function Markdown_To_JsonData($OUTLINE, $MarkdownData, $JsonData, $Finished, $�
     $StartPage += 1;
     foreach($章节小节列表 as $章节小节名称 => $章节小节内容)  {
       //二组标题和内容
-      if(sizeof($章节小节内容) == 4 && !isset($得到所有的内容明细页面Data[5]) )  {
+      if(sizeof($章节小节内容) == 4 && isset($得到所有的内容明细页面Data[5]) )  {
         $内容页                         = array_shift($得到所有的内容明细页面Data[5]);
         $最终输出页面数据[$StartPage]    = 替换内容页($内容页, $章节小节名称, $章节小节内容, $StartPage+1);
         $StartPage += 1;

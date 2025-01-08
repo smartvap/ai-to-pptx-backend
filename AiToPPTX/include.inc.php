@@ -492,7 +492,7 @@ function Markdown_To_JsonData($OUTLINE, $MarkdownData, $JsonData, $Finished, $�
       $Map[$PPTX标题][$章节标题][$小节标题][] = $Item;
     }
   }
-  $pages      = $JsonData['pages'];
+  $pages      = (array)$JsonData['pages'];
   $首页       = $pages[0];
   $目录页     = $pages[1];
   $章节标题页 = $pages[2];

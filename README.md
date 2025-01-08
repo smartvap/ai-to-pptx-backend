@@ -1,10 +1,15 @@
 # Ai-To-PPTX 后端项目说明
-    1 要求使用PHP >= 7.4 和 REDIS, Port:16379, 可以在config.inc.php中修改这个端口号
-    2 配置好URL以后, 在前端项目中,把项目后端URL修改为你自己的URL.
-    3 系统目前内置4套PPTX模板, 你也可以按要求自己增加新的模板.
-    4 如果你自己的模板,在遇到导出为PPTX的时候,有一些特性没有支持,导致导出的PPTX的显示有不完整的地方,可以联系我们.
-    5 目前PPTX不支持动画
-    6 系统使用DeepSeek模型, 在config.inc.php中修改Deepseek的Key.
+    1 Ai-To-PPTX的私有化部署后端版本.
+    2 要求PHP和REDIS环境, 和当前目录下面的文件写入权限.
+    3 目前内置4套PPTX模板, 你也可以按要求自己增加新的模板.
+    4 如果你自己的模板, 在遇到导出为PPTX的时候, 有一些特性没有支持, 导致导出的PPTX的显示有不完整的地方, 可以联系我们.
+    5 使用DeepSeek模型.
+
+# Ai-To-PPTX 如何部署
+    1 直接下载当前仓库代码到服务器
+    2 要求使用PHP >= 7.4 和 REDIS, Port:16379, 可以在 config.inc.php 中修改这个端口号
+    3 配置好URL以后, 在前端项目的config.ts文件, 把项目后端URL修改为你自己的URL.
+    4 系统使用DeepSeek模型, 在 config.inc.php 中修改Deepseek的Key.
 
 # Ai-To-PPTX 开源协议
     1 本项目发行协议: [AGPL-3.0 License]

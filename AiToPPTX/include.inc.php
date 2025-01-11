@@ -233,6 +233,7 @@ function 替换目录页($指定页面JSON, $目录LIST)  {
   //替换首页信息
   //$Page['children'][0]['children'][0]['children'][0]['text'] = "PPT标题";
 	//$Page['children'][1]['children'][0]['children'][0]['text'] = "汇报人";
+  $Page数据信息    = [];
   $PageChildren 	= (array)$指定页面JSON['children'];
 	for($i=0;$i<sizeof($PageChildren);$i++) {
 		if(
@@ -308,6 +309,7 @@ function 得到指定页面的标题列表($指定页面JSON)  {
   //替换首页信息
   //$Page['children'][0]['children'][0]['children'][0]['text'] = "PPT标题";
 	//$Page['children'][1]['children'][0]['children'][0]['text'] = "汇报人";
+  $Page数据信息    = [];
   $PageChildren 	= (array)$指定页面JSON['children'];
 	for($i=0;$i<sizeof($PageChildren);$i++) {
     //检查是否需要把第0和第1进行互换
@@ -423,7 +425,7 @@ function 替换内容页($指定页面JSON, $章节小节名称, $章节小节�
 }
 
 //把Markdown转为JSON Data
-function Markdown_To_JsonData($OUTLINE, $MarkdownData, $JsonData, $Finished, $个性化信息) {
+function Markdown_To_JsonData($OUTLINE, $MarkdownData, $JsonData, $Finished, $个性化信息, $OutPutLastPageId) {
   
   $MarkdownData = str_replace("```markdown", "", $MarkdownData);
   $MarkdownData = str_replace("```", "", $MarkdownData);
@@ -558,6 +560,11 @@ function Markdown_To_JsonData($OUTLINE, $MarkdownData, $JsonData, $Finished, $�
 
   if($Finished == true)  {
     $最终输出页面数据[$StartPage] = 替换首页或尾页($尾页, $个性化信息['LastPageText'], $个性化信息['Author'], $StartPage+1, $个性化信息['LastPageText']);
+  }
+
+  //$OutPutLastPageId > 0 时, 只显示这个值以后的所有页面
+  if($OutPutLastPageId > 0)  {
+    $最终输出页面数据 = array_slice($最终输出页面数据, $OutPutLastPageId + 1);
   }
 
   $JsonData['pages'] = $最终输出页面数据;

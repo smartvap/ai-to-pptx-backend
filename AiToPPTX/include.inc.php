@@ -562,9 +562,11 @@ function Markdown_To_JsonData($OUTLINE, $MarkdownData, $JsonData, $Finished, $�
     $最终输出页面数据[$StartPage] = 替换首页或尾页($尾页, $个性化信息['LastPageText'], $个性化信息['Author'], $StartPage+1, $个性化信息['LastPageText']);
   }
 
+  $JsonData['pages2'] = $最终输出页面数据;
+  $OutPutLastPageId   = intval($OutPutLastPageId);
   //$OutPutLastPageId > 0 时, 只显示这个值以后的所有页面
-  if($OutPutLastPageId > 0)  {
-    $最终输出页面数据 = array_slice($最终输出页面数据, $OutPutLastPageId + 1);
+  if($OutPutLastPageId > 3)  {
+    $最终输出页面数据 = array_slice($最终输出页面数据, $OutPutLastPageId, null, true);
   }
 
   $JsonData['pages'] = $最终输出页面数据;

@@ -220,7 +220,7 @@ if($_POST['asyncGenPptx'] == true)   {
             print 'data: {"current":'.$TotalPagesNumber.', "pptId":"'.$pptId.'", "status":3, "text":"## ", "total":'.$TotalPagesNumber.'}'."\n\n";
             print "data: ".json_encode($Result, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)."\n\n";
             $redis->hSet("PPTX_CONTENT_".date('Ymd'), $pptId, json_encode(['data'=>$FullResponeText, 'total'=>$TotalPagesNumber, 'current'=>$TotalPagesNumber, 'finished'=>true]));
-            $redis->hSet("PPTX_CurrentPage_".date('Ymd'), $pptId, $CurrentPage);
+            //$redis->hSet("PPTX_CurrentPage_".date('Ymd'), $pptId, $CurrentPage);
             return strlen($data);
           }
 
@@ -248,7 +248,7 @@ if($_POST['asyncGenPptx'] == true)   {
                   print 'data: {"current":'.$CurrentPage.', "pptId":"'.$pptId.'", "status":3, "text":"## ", "total":'.$TotalPagesNumber.'}'."\n\n";
                   $分段结构输出情况[] = $分段结构标记;
                   $redis->hSet("PPTX_CONTENT_".date('Ymd'), $pptId, json_encode(['data'=>$FullResponeText, 'total'=>$TotalPagesNumber, 'current'=>$CurrentPage, 'finished'=>false]));
-                  $redis->hSet("PPTX_CurrentPage_".date('Ymd'), $pptId, $CurrentPage);
+                  //$redis->hSet("PPTX_CurrentPage_".date('Ymd'), $pptId, $CurrentPage);
                 }
               }
               if(substr($LastElement1, 0, 4) == '### ') {
@@ -263,7 +263,7 @@ if($_POST['asyncGenPptx'] == true)   {
                     print 'data: {"current":'.$CurrentPage.', "pptId":"'.$pptId.'", "status":3, "text":"### ", "total":'.$TotalPagesNumber.'}'."\n\n";
                     $分段结构输出情况[] = $分段结构标记;
                     $redis->hSet("PPTX_CONTENT_".date('Ymd'), $pptId, json_encode(['data'=>$FullResponeText, 'total'=>$TotalPagesNumber, 'current'=>$CurrentPage, 'finished'=>false]));
-                    $redis->hSet("PPTX_CurrentPage_".date('Ymd'), $pptId, $CurrentPage);
+                    //$redis->hSet("PPTX_CurrentPage_".date('Ymd'), $pptId, $CurrentPage);
                   }
                 }
                 else {
@@ -291,7 +291,7 @@ if($_POST['asyncGenPptx'] == true)   {
                       print 'data: {"current":'.$CurrentPage.', "pptId":"'.$pptId.'", "status":3, "text":"", "total":'.$TotalPagesNumber.'}'."\n\n";
                       $分段结构输出情况[] = $分段结构标记;
                       $redis->hSet("PPTX_CONTENT_".date('Ymd'), $pptId, json_encode(['data'=>$FullResponeText, 'total'=>$TotalPagesNumber, 'current'=>$CurrentPage, 'finished'=>false]));
-                      $redis->hSet("PPTX_CurrentPage_".date('Ymd'), $pptId, $CurrentPage);
+                      //$redis->hSet("PPTX_CurrentPage_".date('Ymd'), $pptId, $CurrentPage);
                     }
                   }
                 }

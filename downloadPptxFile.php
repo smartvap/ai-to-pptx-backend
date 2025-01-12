@@ -11,7 +11,7 @@ $_POST              = json_decode($payload,true);
 
 $pptId              = FilterString($_GET['id']);
 
-$pptxProperty       = $redis->hGet("PPTX_DOWNLOAD", $pptId);
+$pptxProperty       = $redis->hGet("PPTX_DOWNLOAD_".date('Ymd'), $pptId);
 $gzData             = base64_decode($pptxProperty);
 $jsonData           = gzdecode($gzData);
 $originalData       = json_decode($jsonData, true);

@@ -487,8 +487,18 @@ function Markdown_To_JsonData($OUTLINE, $MarkdownData, $JsonData, $Finished, $�
       $小节标题 = substr($Item, 8, strlen($Item));
       //$Map['小节'][$章节标题][] = $小节标题;
     }
+    else if(substr($Item, 0, 5) == '#### ') {
+      //示例数据
+      //#### 1.1.1 主要经济体的增长预期
+      if(in_array(substr($Item, 5, 5), $标题编号数字列表))  {
+        $Item = substr($Item, 11, strlen($Item));
+      }
+      $Map[$PPTX标题][$章节标题][$小节标题][] = $Item;
+    }
     else {
-      if(in_array(substr($Item,0,5), $标题编号数字列表))  {
+      //示例数据
+      //1.1.1 主要经济体的增长预期
+      if(in_array(substr($Item, 0, 5), $标题编号数字列表))  {
         $Item = substr($Item, 6, strlen($Item));
       }
       $Map[$PPTX标题][$章节标题][$小节标题][] = $Item;

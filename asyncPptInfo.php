@@ -49,11 +49,20 @@ if($MarkdownDataJson['data']=="")   {
 $Markdown_To_JsonData_Data = Markdown_To_JsonData($outlineMarkdown, $MarkdownDataJson['data'], $JsonData, $MarkdownDataJson['current']==$MarkdownDataJson['total']?true:false, $个性化信息, $OutPutLastPageId);
 
 
-//Json Data转Zip格式
-$pptxProperty = base64_encode(gzencode(json_encode($Markdown_To_JsonData_Data)));
-
 if($MarkdownDataJson['current'] == $MarkdownDataJson['total']) {
+  //Json Data转Zip格式
+  //当是最后一页的时候,需要把pages变量修改为全部页面, 然后存储数据,供下载文件的时候使用
+  $Markdown_To_JsonData_Data['pages']   = $Markdown_To_JsonData_Data['pages2'];
+  $Markdown_To_JsonData_Data['pages2']  = [];
+  $pptxProperty = base64_encode(gzencode(json_encode($Markdown_To_JsonData_Data)));
   $redis->hSet("PPTX_DOWNLOAD_".date('Ymd'), $pptId, $pptxProperty);
+  $LastPagePPTX = 1;
+}
+else {  
+  //Json Data转Zip格式
+  //当非最后一页的时候,只输出增量的部分
+  $pptxProperty = base64_encode(gzencode(json_encode($Markdown_To_JsonData_Data)));
+  $LastPagePPTX = 0;
 }
 $redis->hSet("PPTX_CurrentPage_".date('Ymd'), $pptId, $currentId);
 
@@ -64,11 +73,12 @@ $RS['data']['current']      = $MarkdownDataJson['current'];
 $RS['data']['total']        = $MarkdownDataJson['total'];
 $RS['data']['markdown']     = $MarkdownDataJson['data'];
 $RS['data']['pptxProperty'] = $pptxProperty;
+$RS['data']['LastPagePPTX'] = $LastPagePPTX;
 
-//$RS['data']['outlineMarkdown']      = $outlineMarkdown;
-//$RS['data']['JsonData']             = $JsonData;
-//$RS['data']['OutPutLastPageId']     = $OutPutLastPageId;
-//$RS['data']['json']                 = $Markdown_To_JsonData_Data;
+$RS['data']['outlineMarkdown']      = $outlineMarkdown;
+$RS['data']['JsonData']             = $JsonData;
+$RS['data']['OutPutLastPageId']     = $OutPutLastPageId;
+$RS['data']['json']                 = $Markdown_To_JsonData_Data;
 
 print_R(json_encode($RS));
 ?>

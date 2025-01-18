@@ -7,7 +7,7 @@
 
 # Ai-To-PPTX 如何部署
     1 直接下载当前仓库代码到服务器
-    2 要求使用PHP >= 7.4 和 REDIS, Port:16379, 可以在 config.inc.php 中修改这个端口号
+    2 要求使用PHP >= 7.4 和 REDIS, 可以在 config.inc.php 中修改这个端口号
     3 配置好URL以后, 在前端项目的config.ts文件, 把项目后端URL修改为你自己的URL.
     4 系统使用DeepSeek模型, 在 config.inc.php 中修改Deepseek的Key.
 

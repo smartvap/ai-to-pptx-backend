@@ -1,4 +1,8 @@
 <?php
+require_once('../config.inc.php');
+
+$Data = $redis->hGetAll("PPTX_DOWNLOAD_".date('Ymd'));
+print_R($Data);
 
 exit;
 
@@ -16,11 +20,6 @@ for ($i = 0; $i < 130; $i++) {
         echo "键 PPTX_CONTENT_$date 不存在或删除失败。\n";
     }
 }
-
-$Data = $redis->del("PPTX_DOWNLOAD");
-$Data = $redis->hGetAll("PPTX_DOWNLOAD");
-print_R($Data);
-
 
 
 

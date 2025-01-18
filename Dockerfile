@@ -22,6 +22,15 @@ WORKDIR /var/www/html/aipptx
 # 复制代码到容器中
 COPY . .
 
+RUN mkdir -p /var/www/html/aipptx/cache && \
+    chown -R www-data:www-data /var/www/html/aipptx/cache && \
+    chmod -R 775 /var/www/html/aipptx/cache
+
+RUN mkdir -p /var/www/html/aipptx/output && \
+    chown -R www-data:www-data /var/www/html/aipptx/output && \
+    chmod -R 775 /var/www/html/aipptx/output
+
+
 # 安装 git Node.js 和 npm, 主要用于安装和编译前端项目
 RUN apt-get update && apt-get install -y git nodejs npm
 

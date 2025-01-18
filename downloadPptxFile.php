@@ -16,7 +16,9 @@ $pptxProperty       = $redis->hGet("PPTX_DOWNLOAD_".date('Ymd'), $pptId);
 $gzData             = base64_decode($pptxProperty);
 $jsonData           = gzdecode($gzData);
 $originalData       = json_decode($jsonData, true);
-
+print $gzData;
+print $jsonData;
+print_R($originalData);
 if($originalData == NULL)  {
     die("PPTX内容不存在");
     exit;

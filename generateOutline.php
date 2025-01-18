@@ -76,7 +76,7 @@ if($_POST['action'] == 'stream' && $_POST['subject'] != '')   {
         CURLOPT_RETURNTRANSFER => false,
         CURLOPT_WRITEFUNCTION => function($curl, $data) {
             echo $data;
-            ob_flush();
+            if(ob_get_level() > 0) ob_flush();
             flush();
             return strlen($data);
         },

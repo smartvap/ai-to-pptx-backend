@@ -58,7 +58,7 @@ RUN npm run build
 RUN mv /var/www/html/ai-to-pptx/webroot/* /var/www/html
 
 # 暴露端口 80（Apache 默认端口）和 6379（Redis 默认端口）
-EXPOSE 80 6379
+EXPOSE 80
 
 # 启动 Apache 和 Redis
 CMD ["sh", "-c", "redis-server --daemonize yes && apache2-foreground"]

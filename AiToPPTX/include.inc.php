@@ -314,10 +314,14 @@ function 得到指定页面的标题列表($指定页面JSON)  {
 	for($i=0;$i<sizeof($PageChildren);$i++) {
     //检查是否需要把第0和第1进行互换
     if( $PageChildren[$i]['type'] == 'text' &&
-        $PageChildren[$i]['children'][0]['type']=="p" &&
-        $PageChildren[$i]['children'][1]['type']=="p" &&
-        $PageChildren[$i]['children'][0]['children'][0]['text']=="" &&
-        $PageChildren[$i]['children'][1]['children'][0]['text']!=""
+        isset($PageChildren[$i]['children'][0]) &&
+        isset($PageChildren[$i]['children'][1]) &&
+        $PageChildren[$i]['children'][0]['type'] == "p" &&
+        $PageChildren[$i]['children'][1]['type'] == "p" &&
+        isset($PageChildren[$i]['children'][0]['children'][0]) &&
+        isset($PageChildren[$i]['children'][1]['children'][0]) &&
+        $PageChildren[$i]['children'][0]['children'][0]['text'] == "" &&
+        $PageChildren[$i]['children'][1]['children'][0]['text'] != ""
       )  {
         $Temp = $PageChildren[$i]['children'][0];
         $PageChildren[$i]['children'][0] = $PageChildren[$i]['children'][1];
@@ -358,11 +362,11 @@ function 替换内容页($指定页面JSON, $章节小节名称, $章节小节�
   $PageChildren 	= (array)$指定页面JSON['children'];
 	for($i=0;$i<sizeof($PageChildren);$i++) {
     //检查是否需要把第0和第1进行互换
-    if( $PageChildren[$i]['type'] == 'text' &&
-        $PageChildren[$i]['children'][0]['type']=="p" &&
-        $PageChildren[$i]['children'][1]['type']=="p" &&
-        $PageChildren[$i]['children'][0]['children'][0]['text']=="" &&
-        $PageChildren[$i]['children'][1]['children'][0]['text']!=""
+    if( @$PageChildren[$i]['type'] == 'text' &&
+        @$PageChildren[$i]['children'][0]['type']=="p" &&
+        @$PageChildren[$i]['children'][1]['type']=="p" &&
+        @$PageChildren[$i]['children'][0]['children'][0]['text']=="" &&
+        @$PageChildren[$i]['children'][1]['children'][0]['text']!=""
       )  {
         $Temp = $PageChildren[$i]['children'][0];
         $PageChildren[$i]['children'][0] = $PageChildren[$i]['children'][1];

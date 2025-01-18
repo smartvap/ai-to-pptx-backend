@@ -237,7 +237,7 @@ if($_POST['asyncGenPptx'] == true)   {
                 }
               }
               $LastElement1 = array_pop($FullResponeTextArrayNotNullLine);
-              if(substr($LastElement1, 0, 3) == '## ') {
+              if($LastElement1 && substr($LastElement1, 0, 3) == '## ') {
                 //print_R($LastElement1);
                 //print_R($FullResponeTextArrayNotNullLine);
                 //分段结构只需要输出一次即可, 为实现这个目标, 需要加一个输出标记
@@ -251,10 +251,10 @@ if($_POST['asyncGenPptx'] == true)   {
                   //$redis->hSet("PPTX_CurrentPage_".date('Ymd'), $pptId, $CurrentPage);
                 }
               }
-              if(substr($LastElement1, 0, 4) == '### ') {
+              if($LastElement1 && substr($LastElement1, 0, 4) == '### ') {
                 //print_R($LastElement1);
                 $LastElement2 = array_pop($FullResponeTextArrayNotNullLine);
-                if(substr($LastElement2, 0, 3) == '## ') {
+                if($LastElement2 && substr($LastElement2, 0, 3) == '## ') {
                   //上一个元素是一个二级标题 当前是一个大的章节的第一个页面时
                   //分段结构只需要输出一次即可, 为实现这个目标, 需要加一个输出标记
                   $分段结构标记 = md5($LastElement2);
@@ -299,7 +299,7 @@ if($_POST['asyncGenPptx'] == true)   {
               }
               //后续需要实现统计出有多少页PPTX, 然后需要标记当前页码, 从而实现实时渲染
               //print "\n"; print_R($FullResponeTextArrayNotNullLine); print "\n";
-              ob_flush();
+              if(ob_get_level() > 0) ob_flush();
               flush();
               // 从缓冲区中移除已处理的部分
               $buffer = substr($buffer, strpos($buffer, $matches[0]) + strlen($matches[0]));

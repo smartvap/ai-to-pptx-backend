@@ -13,11 +13,19 @@
     4 系统使用DeepSeek模型, 在 config.inc.php 中修改Deepseek的Key.
     5 ./cache 和 ./output 两个目录要求可写
 
-# Ai-To-PPTX Dockerfile部署
+# Ai-To-PPTX Dockerfile部署说明
     1 把前端项目编译为静态文件, 目录为: /var/www/html , 同时在前端中把后端地址修改为 /aipptx/
     2 把后端项目的PHP文件放到 /var/www/html/aipptx 目录
     3 安装Redis服务器端和PHP的Redis扩展
     4 /var/www/html/aipptx/cache 和 /var/www/html/aipptx/output 两个目录要求可写
+
+# Ai-To-PPTX Docker使用说明
+    1 下载镜像: docker pull chatbookai/ai-to-pptx:0.1
+    2 启动镜像: docker run -p 8080:80 chatbookai/ai-to-pptx:0.1
+    3 开始使用: 在浏览器里面输入: http://localhost:8080
+    4 列出镜像: docker ps -a
+    5 进入镜像: docker exec -it <container_name_or_id> /bin/bash
+
 
 
 # Ai-To-PPTX 开源协议

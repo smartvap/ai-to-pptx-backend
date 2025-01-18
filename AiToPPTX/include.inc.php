@@ -327,9 +327,9 @@ function 得到指定页面的标题列表($指定页面JSON)  {
         $PageChildren[$i]['children'][0] = $PageChildren[$i]['children'][1];
         $PageChildren[$i]['children'][1] = $Temp;
       }
-		if( $PageChildren[$i]['type'] == 'text' &&
-        $PageChildren[$i]['children'][0]['type']=="p" &&
-        $PageChildren[$i]['children'][0]['children'][0]['text']!=""
+		if( @$PageChildren[$i]['type'] == 'text' &&
+        @$PageChildren[$i]['children'][0]['type']=="p" &&
+        @$PageChildren[$i]['children'][0]['children'][0]['text']!=""
       )  {
       //$PageChildren[$i]['children'][0]['children'][0]['text'] = $PPTX标题;
       //print $PageChildren[$i]['children'][0]['children'][0]['text']."<BR>";
@@ -372,9 +372,9 @@ function 替换内容页($指定页面JSON, $章节小节名称, $章节小节�
         $PageChildren[$i]['children'][0] = $PageChildren[$i]['children'][1];
         $PageChildren[$i]['children'][1] = $Temp;
       }
-		if( $PageChildren[$i]['type'] == 'text' &&
-        $PageChildren[$i]['children'][0]['type']=="p" &&
-        $PageChildren[$i]['children'][0]['children'][0]['text']!=""
+		if( @$PageChildren[$i]['type'] == 'text' &&
+        @$PageChildren[$i]['children'][0]['type']=="p" &&
+        @$PageChildren[$i]['children'][0]['children'][0]['text']!=""
       )  {
       //$PageChildren[$i]['children'][0]['children'][0]['text'] = $PPTX标题;
       //print $PageChildren[$i]['children'][0]['children'][0]['text']."<BR>";

@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_NOTICE & ~E_WARNING); 
 require_once('config.inc.php');
 require_once('./AiToPPTX/include.inc.php');
 

@@ -289,15 +289,15 @@ function 得到所有的内容明细页面($pages)     {
     }
   }
   //额外复制两份模板的数据出来,为随后的模板匹配创造更多的匹配项
-  if(is_array(@$可以随机抽取使用的页面数据[5])) {
+  if(is_array($可以随机抽取使用的页面数据[5])) {
     $可以随机抽取使用的页面数据[5] = array_merge($可以随机抽取使用的页面数据[5], $可以随机抽取使用的页面数据[5], $可以随机抽取使用的页面数据[5], $可以随机抽取使用的页面数据[5]);
   }
   //额外复制两份模板的数据出来,为随后的模板匹配创造更多的匹配项
-  if(is_array(@$可以随机抽取使用的页面数据[7])) {
+  if(is_array($可以随机抽取使用的页面数据[7])) {
     $可以随机抽取使用的页面数据[7] = array_merge($可以随机抽取使用的页面数据[7], $可以随机抽取使用的页面数据[7], $可以随机抽取使用的页面数据[7], $可以随机抽取使用的页面数据[7]);
   }
   //额外复制两份模板的数据出来,为随后的模板匹配创造更多的匹配项
-  if(is_array(@$可以随机抽取使用的页面数据[9])) {
+  if(is_array($可以随机抽取使用的页面数据[9])) {
     $可以随机抽取使用的页面数据[9] = array_merge($可以随机抽取使用的页面数据[9], $可以随机抽取使用的页面数据[9], $可以随机抽取使用的页面数据[9], $可以随机抽取使用的页面数据[9]);
   }
 
@@ -314,22 +314,18 @@ function 得到指定页面的标题列表($指定页面JSON)  {
 	for($i=0;$i<sizeof($PageChildren);$i++) {
     //检查是否需要把第0和第1进行互换
     if( $PageChildren[$i]['type'] == 'text' &&
-        isset($PageChildren[$i]['children'][0]) &&
-        isset($PageChildren[$i]['children'][1]) &&
-        $PageChildren[$i]['children'][0]['type'] == "p" &&
-        $PageChildren[$i]['children'][1]['type'] == "p" &&
-        isset($PageChildren[$i]['children'][0]['children'][0]) &&
-        isset($PageChildren[$i]['children'][1]['children'][0]) &&
-        $PageChildren[$i]['children'][0]['children'][0]['text'] == "" &&
-        $PageChildren[$i]['children'][1]['children'][0]['text'] != ""
+        $PageChildren[$i]['children'][0]['type']=="p" &&
+        $PageChildren[$i]['children'][1]['type']=="p" &&
+        $PageChildren[$i]['children'][0]['children'][0]['text']=="" &&
+        $PageChildren[$i]['children'][1]['children'][0]['text']!=""
       )  {
         $Temp = $PageChildren[$i]['children'][0];
         $PageChildren[$i]['children'][0] = $PageChildren[$i]['children'][1];
         $PageChildren[$i]['children'][1] = $Temp;
       }
-		if( @$PageChildren[$i]['type'] == 'text' &&
-        @$PageChildren[$i]['children'][0]['type']=="p" &&
-        @$PageChildren[$i]['children'][0]['children'][0]['text']!=""
+		if( $PageChildren[$i]['type'] == 'text' &&
+        $PageChildren[$i]['children'][0]['type']=="p" &&
+        $PageChildren[$i]['children'][0]['children'][0]['text']!=""
       )  {
       //$PageChildren[$i]['children'][0]['children'][0]['text'] = $PPTX标题;
       //print $PageChildren[$i]['children'][0]['children'][0]['text']."<BR>";
@@ -362,19 +358,19 @@ function 替换内容页($指定页面JSON, $章节小节名称, $章节小节�
   $PageChildren 	= (array)$指定页面JSON['children'];
 	for($i=0;$i<sizeof($PageChildren);$i++) {
     //检查是否需要把第0和第1进行互换
-    if( @$PageChildren[$i]['type'] == 'text' &&
-        @$PageChildren[$i]['children'][0]['type']=="p" &&
-        @$PageChildren[$i]['children'][1]['type']=="p" &&
-        @$PageChildren[$i]['children'][0]['children'][0]['text']=="" &&
-        @$PageChildren[$i]['children'][1]['children'][0]['text']!=""
+    if( $PageChildren[$i]['type'] == 'text' &&
+        $PageChildren[$i]['children'][0]['type']=="p" &&
+        $PageChildren[$i]['children'][1]['type']=="p" &&
+        $PageChildren[$i]['children'][0]['children'][0]['text']=="" &&
+        $PageChildren[$i]['children'][1]['children'][0]['text']!=""
       )  {
         $Temp = $PageChildren[$i]['children'][0];
         $PageChildren[$i]['children'][0] = $PageChildren[$i]['children'][1];
         $PageChildren[$i]['children'][1] = $Temp;
       }
-		if( @$PageChildren[$i]['type'] == 'text' &&
-        @$PageChildren[$i]['children'][0]['type']=="p" &&
-        @$PageChildren[$i]['children'][0]['children'][0]['text']!=""
+		if( $PageChildren[$i]['type'] == 'text' &&
+        $PageChildren[$i]['children'][0]['type']=="p" &&
+        $PageChildren[$i]['children'][0]['children'][0]['text']!=""
       )  {
       //$PageChildren[$i]['children'][0]['children'][0]['text'] = $PPTX标题;
       //print $PageChildren[$i]['children'][0]['children'][0]['text']."<BR>";

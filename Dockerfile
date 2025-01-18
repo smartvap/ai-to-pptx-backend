@@ -1,3 +1,10 @@
+# 构建Ai-To-PPTX项目
+# 把前端项目编译为静态文件, 目录为: /var/www/html , 同时在前端中把后端地址修改为 /aipptx/
+# 把后端项目的PHP文件放到 /var/www/html/aipptx 目录
+# 安装Redis服务器端和PHP的Redis扩展
+# /var/www/html/aipptx/cache 和 /var/www/html/aipptx/output 两个目录要求可写
+
+
 # 使用官方的 PHP 8.2 镜像，并包含 Apache
 FROM php:8.2-apache
 

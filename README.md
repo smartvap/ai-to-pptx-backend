@@ -8,8 +8,17 @@
 # Ai-To-PPTX 如何部署
     1 直接下载当前仓库代码到服务器
     2 要求使用PHP >= 7.4 和 REDIS, 可以在 config.inc.php 中修改这个端口号
+    3 要求安装Redis服务器端和PHP的Redis扩展和Zip扩展
     3 配置好URL以后, 在前端项目的config.ts文件, 把项目后端URL修改为你自己的URL.
     4 系统使用DeepSeek模型, 在 config.inc.php 中修改Deepseek的Key.
+    5 ./cache 和 ./output 两个目录要求可写
+
+# Ai-To-PPTX Dockerfile部署
+    1 把前端项目编译为静态文件, 目录为: /var/www/html , 同时在前端中把后端地址修改为 /aipptx/
+    2 把后端项目的PHP文件放到 /var/www/html/aipptx 目录
+    3 安装Redis服务器端和PHP的Redis扩展
+    4 /var/www/html/aipptx/cache 和 /var/www/html/aipptx/output 两个目录要求可写
+
 
 # Ai-To-PPTX 开源协议
     1 本项目发行协议: [AGPL-3.0 License]

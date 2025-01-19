@@ -20,8 +20,8 @@
     4 /var/www/html/aipptx/cache 和 /var/www/html/aipptx/output 两个目录要求可写
 
 # Ai-To-PPTX Docker使用说明
-    1 下载镜像: docker pull chatbookai/ai-to-pptx
-    2 启动镜像: docker run -p 8080:80 chatbookai/ai-to-pptx
+    1 下载镜像: docker pull chatbookai/ai-to-pptx:0.1
+    2 启动镜像: docker run -p 8080:80 chatbookai/ai-to-pptx:0.1
     3 开始使用: 在浏览器里面输入: http://localhost:8080
     4 列出镜像: docker ps -a
     5 进入镜像: docker exec -it <container_name_or_id> /bin/bash

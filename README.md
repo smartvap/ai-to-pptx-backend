@@ -9,9 +9,10 @@
     1 直接下载当前仓库代码到服务器
     2 要求使用PHP >= 7.4 和 REDIS, 可以在 config.inc.php 中修改这个端口号
     3 要求安装Redis服务器端和PHP的Redis扩展和Zip扩展
-    3 配置好URL以后, 在前端项目的config.ts文件, 把项目后端URL修改为你自己的URL.
-    4 系统使用DeepSeek模型, 在 config.inc.php 中修改Deepseek的Key.
+    3 配置好URL以后, 在前端项目的config.ts文件, 把项目后端URL修改为你自己的URL
+    4 系统使用DeepSeek模型, 在 config.inc.php 中修改Deepseek的Key
     5 ./cache 和 ./output 两个目录要求可写
+    6 如果你部署失败, 可以参考 Dockerfile 文件里面的部署过程
 
 # Ai-To-PPTX Dockerfile部署说明
     1 把前端项目编译为静态文件, 目录为: /var/www/html , 同时在前端中把后端地址修改为 /aipptx/

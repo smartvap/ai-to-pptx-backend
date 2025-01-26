@@ -29,6 +29,8 @@ WORKDIR /var/www/html/aipptx
 # 复制代码到容器中
 COPY . .
 
+# 需要修改在config.inc.php修改你自己的DeepSeek的API的KEY
+
 RUN mkdir -p /var/www/html/aipptx/cache && \
     chown -R www-data:www-data /var/www/html/aipptx/cache && \
     chmod -R 775 /var/www/html/aipptx/cache

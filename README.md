@@ -28,6 +28,7 @@
     5 进入镜像: docker exec -it <container_name_or_id> /bin/bash
     6 如果是在Docker Desktop中, 可以在Docker Hub中搜索 chatbookai/ai-to-pptx 就可以看到镜像, 下载以后, 启动的时候, 需要指定本地的端口为8080, 然后就可以在浏览器打开 http://localhost:8080
     7 注意: Docker的镜像中已经同时包含了前端和后端项目
+    8 使用前请登录到容器中, 在 /var/www/html/aipptx/config.inc.php 中修改Deepseek的Key, 你可以在Deepseek网站中获得你自己的KEY
 
 # Ai-To-PPTX 开源协议
     1 本项目发行协议: [AGPL-3.0 License]

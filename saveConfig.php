@@ -13,6 +13,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
+if($_GET['action']=='getConfig')  {
+    $RS = [];
+    $RS['status']       = 'ok';
+    $RS['API_URL']      = $API_URL;
+    $RS['API_MODE']     = $API_MODE;
+    print json_encode($RS);
+    exit;
+}
+
 $_POST = json_decode(file_get_contents("php://input"), true);
 
 if($_POST['aiApiUrl'] && $_POST['aiModel'] && $_POST['aiToken']) {

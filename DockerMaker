@@ -2,9 +2,9 @@ sudo docker login
     chatbookai
     password
 
-sudo docker build -t SmartSchoolAI/ai-to-pptx:0.2 .
+sudo docker build -t chatbookai/ai-to-pptx:0.2 .
 
-sudo docker push SmartSchoolAI/ai-to-pptx:0.2
+sudo docker push chatbookai/ai-to-pptx:0.2
 
 sudo docker rm 22cc2dece268
 
@@ -12,6 +12,6 @@ sudo docker ps -a
 
 sudo docker stop 22cc2dece268
 
-sudo docker pull SmartSchoolAI/ai-to-pptx:0.2
+sudo docker pull chatbookai/ai-to-pptx:0.2
 
-sudo docker run -p 8080:80 SmartSchoolAI/ai-to-pptx:0.2
+sudo docker run -p 8080:80 chatbookai/ai-to-pptx:0.2

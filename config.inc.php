@@ -8,10 +8,6 @@ header('Cache-Control: no-cache');
 
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_NOTICE & ~E_WARNING); 
 
-$API_URL    = "https://api.deepseek.com";
-$API_KEY    = "sk-a3dafc724335489e94a30f495dcb10d8";
-$API_MODE 	= "deepseek-chat";
-
 global $allowedOrigins;
 $allowedOrigins = [];
 $allowedOrigins[] = 'http://localhost:3000';
@@ -21,6 +17,9 @@ $allowedOrigins[] = 'http://localhost:3000/';
 $redis = new Redis();
 $redis->connect('127.0.0.1', 6379);
 
+$API_URL    = $redis->get("API_URL");
+$API_MODE   = $redis->get("API_MODE");
+$API_KEY    = $redis->get("API_KEY");
 
 $Global_Templates = [
     [

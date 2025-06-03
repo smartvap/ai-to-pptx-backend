@@ -17,8 +17,8 @@ $allowedOrigins[] = 'http://localhost:3000/';
 $redis = new Redis();
 $redis->connect('127.0.0.1', 6379);
 
-$API_URL    = $redis->get("API_URL");
-$API_MODE   = $redis->get("API_MODE");
+$API_URL    = "http://ollama:11434";
+$API_MODE   = "134.84.61.23:8080/library/qwen3:8b";
 $API_KEY    = $redis->get("API_KEY");
 
 $Global_Templates = [

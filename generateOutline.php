@@ -52,19 +52,14 @@ if($_POST['action'] == 'stream' && $_POST['subject'] != '')   {
 
     $CURLOPT_POSTFIELDS = [
         "model" => $API_MODE,
-        "messages" => [
-            [
-                "role" => "user",
-                "content" => $promptText
-            ]
-        ],
+        "prompt" => $promptText,
         "frequency_penalty" => 0,
         "max_tokens" => 2048,
         "presence_penalty" => 0,
         "response_format" => [
             "type" => "text"
         ],
-        "stream" => true,
+        "stream" => false,
         "temperature" => 0,
         "top_p" => 1,
         "tool_choice" => "none",
@@ -73,7 +68,7 @@ if($_POST['action'] == 'stream' && $_POST['subject'] != '')   {
     $CURLOPT_POSTFIELDS = json_encode($CURLOPT_POSTFIELDS, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => $API_URL . '/chat/completions',
+        CURLOPT_URL => $API_URL . '/api/generate',
         CURLOPT_RETURNTRANSFER => false,
         CURLOPT_WRITEFUNCTION => function($curl, $data) {
             echo $data;
@@ -104,8 +99,8 @@ if($_POST['action'] == 'stream' && $_POST['subject'] != '')   {
 
 /*
 CURLOPT_WRITEFUNCTION => function($curl, $data) use (&$FullResponeText) {
-    // 使用正则表达式提取 "content":"..." 部分的内容
-    if (preg_match('/"content":"([^"]*)"/', $data, $matches)) {
+    // 使用正则表达式提取 "response":"..." 部分的内容
+    if (preg_match('/"response":"([^"]*)"/', $data, $matches)) {
       $outputData = $matches[1];
       $FullResponeText .= $outputData;
       echo 'data: {"status":3,"text":"'.$outputData.'"}'."\n\r";

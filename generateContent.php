@@ -178,9 +178,6 @@ if($_POST['asyncGenPptx'] == true)   {
 
     $curl       = curl_init();
 
-    $messages 	= [];
-    $messages[] = ['content'=> $promptText, 'role'=>'user'];
-
     //删除昨天的记录数据
     $result = $redis->del("PPTX_CONTENT_".date('Ymd', strtotime('-1 day')));
 
@@ -189,7 +186,7 @@ if($_POST['asyncGenPptx'] == true)   {
 
     $CURLOPT_POSTFIELDS = [
         "model" => $API_MODE,
-        "messages" => $messages,
+        "prompt" => $promptText,
         "frequency_penalty" => 0,
         "max_tokens" => 2048,
         "presence_penalty" => 0,
@@ -206,7 +203,7 @@ if($_POST['asyncGenPptx'] == true)   {
     $FullResponeText    = '';
     $分段结构输出情况     = [];
     curl_setopt_array($curl, array(
-        CURLOPT_URL => $API_URL . '/chat/completions',
+        CURLOPT_URL => $API_URL . '/api/generate',
         CURLOPT_RETURNTRANSFER => false,
         CURLOPT_WRITEFUNCTION => function($curl, $data) use (&$FullResponeText, &$分段结构输出情况, &$pptId, &$TotalPagesNumber, &$redis) {
           static $buffer = '';  // 用于存储不完整的数据块
@@ -225,7 +222,7 @@ if($_POST['asyncGenPptx'] == true)   {
             return strlen($data);
           }
 
-          while (preg_match('/"content":"([^"]*)"/', $buffer, $matches)) {
+          while (preg_match('/"response":"([^"]*)"/', $buffer, $matches)) {
               $outputData = $matches[1];
               $FullResponeText .= $outputData;
               //echo $outputData;
